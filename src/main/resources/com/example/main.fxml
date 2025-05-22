@@ -67,7 +67,7 @@
                   <Insets right="40.0" />
                </HBox.margin>
             </Text>
-            <ListView fx:id="rList" editable="true" fixedCellSize="31.0" prefHeight="150.0" prefWidth="170.0" />
+            <ListView fx:id="rList" editable="true" fixedCellSize="31.0" onEditCancel="#rListChanged" onEditCommit="#rListChanged" onEditStart="#rListChanged" prefHeight="150.0" prefWidth="170.0" />
          </children>
       </HBox>
       <VBox alignment="CENTER" prefHeight="140.0" prefWidth="600.0">

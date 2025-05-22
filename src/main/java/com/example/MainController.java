@@ -89,4 +89,9 @@ public class MainController implements Initializable{
         System.out.print("key worked");
     }
 
+    @FXML
+    void rListChanged() {
+        rTimer.setText("test");
+    }
+
 }
