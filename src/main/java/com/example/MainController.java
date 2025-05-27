@@ -1,9 +1,13 @@
 package com.example;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 //import java.lang.classfile.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -70,17 +74,43 @@ public class MainController implements Initializable{
         rList.getItems().add(4);
         rList.getItems().add(5);
 
-        sList.getItems().add(1);
-        sList.getItems().add(2);
-        sList.getItems().add(3);
-        sList.getItems().add(4);
         sList.getItems().add(5);
+        sList.getItems().add(10);
+        sList.getItems().add(15);
+        sList.getItems().add(20);
+        sList.getItems().add(30);
     }
 
     @FXML
-    void generateGenre() {
-        genreLabel.setText("genre worked");
-        System.out.print("genre worked");
+    void generateGenre() throws URISyntaxException, IOException {
+
+        URI uri = new URI("https://binaryjazz.us/wp-json/genrenator/v1/genre/");
+        URL url = uri.toURL();
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.connect();
+
+        int responseCode = conn.getResponseCode();
+
+        if (responseCode != 200) {
+            throw new RuntimeException("Response Error Code: " + responseCode);
+        }
+        else {
+            StringBuilder apiString = new StringBuilder();
+            Scanner scanner = new Scanner(url.openStream());
+
+            while (scanner.hasNext()) {
+                apiString.append(scanner.nextLine());
+            }
+            scanner.close();
+            
+            String genreString = apiString.toString().substring(1, apiString.length() - 1);
+
+            genreLabel.setText(genreString);
+        }
+
+
     }
 
     @FXML
@@ -91,7 +121,12 @@ public class MainController implements Initializable{
 
     @FXML
     void rListChanged() {
-        rTimer.setText("test");
+        rTimer.setText(Integer.toString(rList.getSelectionModel().getSelectedItem()) + ":00");
+    }
+
+    @FXML
+    void sListChanged() {
+        sTimer.setText(Integer.toString(sList.getSelectionModel().getSelectedItem()) + ":00");
     }
 
 }
