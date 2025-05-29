@@ -74,7 +74,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="rStartButton" mnemonicParsing="false" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Start" textFill="#2d3142">
+                  <Button fx:id="rStartButton" mnemonicParsing="false" onAction="#startRTimer" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Start" textFill="#2d3142">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -103,7 +103,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="rTimer" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #D8D5DB; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="5:00" textFill="#2d3142">
+            <Label fx:id="rTimerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #D8D5DB; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="5:00" textFill="#2d3142">
                <font>
                   <Font size="48.0" />
                </font>
@@ -165,7 +165,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="sTimer" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #D8D5DB; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="15:00" textFill="#2d3142">
+            <Label fx:id="sTimerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #D8D5DB; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="15:00" textFill="#2d3142">
                <font>
                   <Font size="48.0" />
                </font>

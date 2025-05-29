@@ -9,7 +9,10 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -68,7 +71,7 @@ public class MainController implements Initializable{
     private Button rStopButton;
 
     @FXML
-    private Label rTimer;
+    private Label rTimerLabel;
 
     // Song Timer Control
     @FXML
@@ -81,7 +84,9 @@ public class MainController implements Initializable{
     private Button sStopButton;
     
     @FXML
-    private Label sTimer;
+    private Label sTimerLabel;
+
+    private boolean timerActive = false;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -97,6 +102,7 @@ public class MainController implements Initializable{
         sList.getItems().add(20);
         sList.getItems().add(30);
     }
+
 
     @FXML
     void generateGenre() throws URISyntaxException, IOException {
@@ -129,20 +135,75 @@ public class MainController implements Initializable{
 
     }
 
+
     @FXML
     void generateKey() {
         String nextKey = keys[rand.nextInt(keys.length)];
         keyLabel.setText(nextKey);
     }
 
+
     @FXML
     void rListChanged() {
-        rTimer.setText(Integer.toString(rList.getSelectionModel().getSelectedItem()) + ":00");
+        int timerMinutes = rList.getSelectionModel().getSelectedItem();
+        if (!timerActive) {
+            rTimerLabel.setText(timerMinutes + ":00");
+        }
+        
     }
+        
 
     @FXML
     void sListChanged() {
-        sTimer.setText(Integer.toString(sList.getSelectionModel().getSelectedItem()) + ":00");
+        if (!timerActive) {
+            sTimerLabel.setText(Integer.toString(sList.getSelectionModel().getSelectedItem()) + ":00");
+        }
+    }
+
+
+    private Label curLabel = rTimerLabel;
+
+    Timer timer = new Timer();
+
+    private int minutes = 0;
+
+    private int secondsLeft;
+
+    TimerTask minuteCountdown = new TimerTask() {
+        
+        int count = 60;
+
+        @Override
+        public void run(){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run(){
+                    timerActive = true;
+                    count--;
+                    secondsLeft = count;
+                    updateLabel();
+                    System.out.println(count);
+                    if (count < 0) {
+                        count = 59;
+                        if (minutes <= 0) {
+                            timer.cancel();
+                        }
+                    }
+                }
+            });
+        }
+    };
+
+    @FXML
+    void startRTimer() {
+        curLabel = rTimerLabel;
+        timer.schedule(minuteCountdown, 0, 1000);
+    }
+    
+
+    // Sets timer's time and updates the respective label while the timer is counting down
+    private void updateLabel() {
+        curLabel.setText(minutes + ":" + secondsLeft);
     }
 
 }
