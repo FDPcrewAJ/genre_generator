@@ -165,7 +165,7 @@ public class MainController implements Initializable{
 
     Timer timer = new Timer();
 
-    private int minutes = 0;
+    private int minutes = 5;
 
     private int secondsLeft;
 
@@ -183,10 +183,13 @@ public class MainController implements Initializable{
                     secondsLeft = count;
                     updateLabel();
                     System.out.println(count);
-                    if (count < 0) {
+                    if (count <= 0) {
                         count = 59;
                         if (minutes <= 0) {
                             timer.cancel();
+                        }
+                        else {
+                            minutes--;
                         }
                     }
                 }
