@@ -187,6 +187,7 @@ public class MainController implements Initializable{
                         count = 59;
                         if (minutes <= 0) {
                             timer.cancel();
+                            timerActive = false;
                         }
                         else {
                             minutes--;
@@ -199,14 +200,22 @@ public class MainController implements Initializable{
 
     @FXML
     void startRTimer() {
-        curLabel = rTimerLabel;
-        timer.schedule(minuteCountdown, 0, 1000);
+        if (!timerActive) {
+            curLabel = rTimerLabel;
+            timer.schedule(minuteCountdown, 0, 1000);
+        }
     }
     
 
     // Sets timer's time and updates the respective label while the timer is counting down
     private void updateLabel() {
-        curLabel.setText(minutes + ":" + secondsLeft);
+        if (secondsLeft < 10) {
+            curLabel.setText(minutes + ":0" + secondsLeft);
+        }
+        else {
+            curLabel.setText(minutes + ":" + secondsLeft);
+        }
+        
     }
 
 }
