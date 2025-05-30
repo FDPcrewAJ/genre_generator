@@ -167,11 +167,11 @@ public class MainController implements Initializable{
 
     private int minutes = 5;
 
-    private int secondsLeft;
+    private int secondsLeft = 60;
 
     TimerTask minuteCountdown = new TimerTask() {
         
-        int count = 60;
+        int count = secondsLeft;
 
         @Override
         public void run(){
@@ -182,7 +182,7 @@ public class MainController implements Initializable{
                     count--;
                     secondsLeft = count;
                     updateLabel();
-                    System.out.println(count);
+                    //System.out.println(count);
                     if (count <= 0) {
                         count = 59;
                         if (minutes <= 0) {
@@ -198,12 +198,23 @@ public class MainController implements Initializable{
         }
     };
 
+
     @FXML
     void startRTimer() {
         if (!timerActive) {
             curLabel = rTimerLabel;
             timer.schedule(minuteCountdown, 0, 1000);
         }
+    }
+
+    
+    @FXML
+    void pauseRTimer() {
+        System.out.println("worked");
+        timer.cancel();
+        Timer timer2 = new Timer();
+        timer = timer2;
+        timerActive = false;
     }
     
 
