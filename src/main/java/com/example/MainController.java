@@ -169,48 +169,50 @@ public class MainController implements Initializable{
 
     private int secondsLeft = 60;
 
-    TimerTask minuteCountdown = new TimerTask() {
+    private TimerTask createTimerTask() {
+        TimerTask minuteCountdown = new TimerTask() {
         
-        int count = secondsLeft;
-
-        @Override
-        public void run(){
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run(){
-                    timerActive = true;
-                    count--;
-                    secondsLeft = count;
-                    updateLabel();
-                    //System.out.println(count);
-                    if (count <= 0) {
-                        count = 59;
-                        if (minutes <= 0) {
-                            timer.cancel();
-                            timerActive = false;
-                        }
-                        else {
-                            minutes--;
+            int count = secondsLeft;
+    
+            @Override
+            public void run(){
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run(){
+                        timerActive = true;
+                        count--;
+                        secondsLeft = count;
+                        updateLabel();
+                        //System.out.println(count);
+                        if (count <= 0) {
+                            count = 59;
+                            if (minutes <= 0) {
+                                timer.cancel();
+                                timerActive = false;
+                            }
+                            else {
+                                minutes--;
+                            }
                         }
                     }
-                }
-            });
-        }
-    };
+                });
+            }
+        };
+        return minuteCountdown;
+    }
 
 
     @FXML
     void startRTimer() {
         if (!timerActive) {
             curLabel = rTimerLabel;
-            timer.schedule(minuteCountdown, 0, 1000);
+            timer.schedule(createTimerTask(), 0, 1000);
         }
     }
 
     
     @FXML
     void pauseRTimer() {
-        System.out.println("worked");
         timer.cancel();
         Timer timer2 = new Timer();
         timer = timer2;
