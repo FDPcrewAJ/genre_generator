@@ -90,7 +90,7 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="rStopButton" mnemonicParsing="false" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Stop" textFill="#2d3142">
+                  <Button fx:id="rStopButton" mnemonicParsing="false" onAction="#stopRTimer" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Stop" textFill="#2d3142">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -136,7 +136,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="sStartButton" mnemonicParsing="false" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Start" textFill="#2d3142">
+                  <Button fx:id="sStartButton" mnemonicParsing="false" onAction="#startSTimer" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Start" textFill="#2d3142">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -144,7 +144,7 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="sPauseButton" mnemonicParsing="false" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Pause" textFill="#2d3142">
+                  <Button fx:id="sPauseButton" mnemonicParsing="false" onAction="#pauseSTimer" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Pause" textFill="#2d3142">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -152,7 +152,7 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="sStopButton" mnemonicParsing="false" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Stop" textFill="#2d3142">
+                  <Button fx:id="sStopButton" mnemonicParsing="false" onAction="#stopSTimer" style="-fx-background-color: #B0D7FF; -fx-border-color: #ADACB5; -fx-border-width: 2;" text="Stop" textFill="#2d3142">
                      <font>
                         <Font size="18.0" />
                      </font>
