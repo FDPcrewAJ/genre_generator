@@ -88,30 +88,15 @@ public class MainController implements Initializable{
 
     private boolean timerActive = false;
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        rList.getItems().add(1);
-        rList.getItems().add(2);
-        rList.getItems().add(3);
-        rList.getItems().add(4);
-        rList.getItems().add(5);
-
-        sList.getItems().add(5);
-        sList.getItems().add(10);
-        sList.getItems().add(15);
-        sList.getItems().add(20);
-        sList.getItems().add(30);
-    }
-
     private Label curLabel = rTimerLabel;
 
     Timer rTimer = new Timer();
 
     Timer sTimer = new Timer();
 
-    private int timerMinutes = 5;
+    private int timerMinutes = 0;
 
-    private int secondsLeft = 1;
+    private int secondsLeft = 59;
 
     private TimerTask createTimerTask(Timer timer) {
         TimerTask minuteCountdown = new TimerTask() {
@@ -143,6 +128,22 @@ public class MainController implements Initializable{
             }
         };
         return minuteCountdown;
+    }
+
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        rList.getItems().add(1);
+        rList.getItems().add(2);
+        rList.getItems().add(3);
+        rList.getItems().add(4);
+        rList.getItems().add(5);
+
+        sList.getItems().add(5);
+        sList.getItems().add(10);
+        sList.getItems().add(15);
+        sList.getItems().add(20);
+        sList.getItems().add(30);
     }
 
 
