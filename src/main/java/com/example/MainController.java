@@ -22,7 +22,7 @@ import javafx.scene.control.ListView;
 
 public class MainController implements Initializable{
 
-    // Generation Controls
+    // Key and Genre generation Controls
     @FXML
     private Button genreButton;
 
@@ -135,6 +135,7 @@ public class MainController implements Initializable{
     }
 
 
+    // Adds values to the ListView boxes
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         rList.getItems().add(1);
@@ -151,6 +152,7 @@ public class MainController implements Initializable{
     }
 
 
+    // Generates a random genre using a binaryjazz api call
     @FXML
     void generateGenre() throws URISyntaxException, IOException {
 
@@ -185,6 +187,7 @@ public class MainController implements Initializable{
     }
 
 
+    // Gets a random value from the array of keys
     @FXML
     void generateKey() {
         String nextKey = keys[rand.nextInt(keys.length)];
@@ -192,6 +195,8 @@ public class MainController implements Initializable{
     }
 
 
+    // Updates the timer text when a new item is selected
+    // from the research timer ListVeiw
     @FXML
     void rListChanged() {
         if (!timerActive) {
@@ -204,6 +209,8 @@ public class MainController implements Initializable{
     }
         
 
+    // Updates the timer text when a new item is selected
+    // from the song timer ListVeiw
     @FXML
     void sListChanged() {
         if (!timerActive) {
@@ -215,6 +222,7 @@ public class MainController implements Initializable{
     }
 
 
+    // Starts the research timer
     @FXML
     void startRTimer() {
         if (genreGen) {
@@ -226,6 +234,7 @@ public class MainController implements Initializable{
     }
 
     
+    // Pauses the research timer
     @FXML
     void pauseRTimer() {
         rTimer.cancel();
@@ -234,16 +243,20 @@ public class MainController implements Initializable{
     }
 
 
+    // Stops the research timer and resets to 0
     @FXML
     void stopRTimer() {
         rTimer.cancel();
         Timer timer2 = new Timer();
         rTimer = timer2;
         rTimerLabel.setText("0:00");
+        timerMinutes = 0;
+        secondsLeft = 59;
         timerActive = false;
     }
 
 
+    // Starts the song timer
     @FXML
     void startSTimer() {
         if (genreGen) {
@@ -254,7 +267,8 @@ public class MainController implements Initializable{
         }
     }
 
-    
+
+    // Pauses the song timer
     @FXML
     void pauseSTimer() {
         sTimer.cancel();
@@ -263,12 +277,15 @@ public class MainController implements Initializable{
     }
 
 
+    // Stops the song timer
     @FXML
     void stopSTimer() {
         sTimer.cancel();
         Timer timer2 = new Timer();
         sTimer = timer2;
         sTimerLabel.setText("0:00");
+        timerMinutes = 0;
+        secondsLeft = 59;
         timerActive = false;
     }
     
