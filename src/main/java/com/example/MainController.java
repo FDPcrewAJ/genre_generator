@@ -53,6 +53,8 @@ public class MainController implements Initializable{
     
     private Random rand = new Random();
 
+    private Boolean genreGen = false;
+
     // Time Selection lists
     @FXML
     private ListView<Integer> rList;
@@ -86,6 +88,7 @@ public class MainController implements Initializable{
     @FXML
     private Label sTimerLabel;
 
+    // Timer Control Variables
     private boolean timerActive = false;
 
     private Label curLabel = rTimerLabel;
@@ -98,6 +101,7 @@ public class MainController implements Initializable{
 
     private int secondsLeft = 59;
 
+    // Function to create the countdown timer task for the chosen timer
     private TimerTask createTimerTask(Timer timer) {
         TimerTask minuteCountdown = new TimerTask() {
         
@@ -176,6 +180,8 @@ public class MainController implements Initializable{
             genreLabel.setText(genreString);
         }
 
+        genreGen = true;
+
     }
 
 
@@ -211,10 +217,12 @@ public class MainController implements Initializable{
 
     @FXML
     void startRTimer() {
-        curLabel = rTimerLabel;
-        updateLabel();
-        rTimer.schedule(createTimerTask(rTimer), 0, 1000);
-        timerActive = true;
+        if (genreGen) {
+            curLabel = rTimerLabel;
+            rTimer.schedule(createTimerTask(rTimer), 0, 1000);
+            updateLabel();
+            timerActive = true;
+        }
     }
 
     
@@ -238,10 +246,12 @@ public class MainController implements Initializable{
 
     @FXML
     void startSTimer() {
-        curLabel = sTimerLabel;
-        updateLabel();
-        sTimer.schedule(createTimerTask(sTimer), 0, 1000);
-        timerActive = true;
+        if (genreGen) {
+            curLabel = sTimerLabel;
+            sTimer.schedule(createTimerTask(sTimer), 0, 1000);
+            updateLabel();
+            timerActive = true;
+        }
     }
 
     
